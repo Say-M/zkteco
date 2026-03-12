@@ -1,0 +1,7 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000" # Maps localhost:8000 -> container:8000
+    environment:
+      - NODE_ENV=production
