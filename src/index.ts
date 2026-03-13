@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-const { ZKTecoiClockParser } = require("@palmcode/zkteco-iclock-parser");
+import { parseAttendanceLog } from "./utils";
 
 const app = new Hono();
 
@@ -20,19 +20,9 @@ app.post("/iclock/cdata", async (c) => {
   console.log("Device SN:", sn);
   console.log("Raw Logs:", body);
 
-  const result = ZKTecoiClockParser.parseAttendanceLog(body);
-
-  if (result.success) {
-    result.data.forEach((log: any) => {
-      console.log(`User ${log.userID} - ${log.timestamp}`);
-      console.log(
-        `Type: ${ZKTecoiClockParser.getVerifyTypeName(log.verifyType)}`,
-      );
-      console.log(
-        `Action: ${ZKTecoiClockParser.isCheckIn(log) ? "Check In" : "Check Out"}`,
-      );
-    });
-  }
+  const result = parseAttendanceLog(body);
+  
+  console.log(result);
 
   return c.text("OK");
 });

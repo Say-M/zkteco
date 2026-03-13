@@ -5,7 +5,6 @@
     "start": "bun run src/index.ts"
   },
   "dependencies": {
-    "@palmcode/zkteco-iclock-parser": "^0.0.4",
     "hono": "^4.12.7"
   },
   "devDependencies": {
