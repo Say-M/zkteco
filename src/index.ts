@@ -17,11 +17,10 @@ app.post("/iclock/cdata", async (c) => {
   const sn = c.req.query("SN");
   const body = await c.req.text();
 
-  console.log("Device SN:", sn);
-  console.log("Raw Logs:", body);
+  console.log(`Device SN: ${sn} | Raw Logs: ${body}`);
 
   const result = parseAttendanceLog(body);
-  
+
   console.log(result);
 
   return c.text("OK");

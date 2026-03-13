@@ -17,10 +17,8 @@ const statusMap: Record<number, string> = {
 };
 
 const verifyTypeMap: Record<number, string> = {
-  0: "Unknown",
   1: "Fingerprint",
-  2: "Password",
-  3: "Card",
+  2: "Card",
   16: "Face",
   25: "Palm",
 };
@@ -32,8 +30,8 @@ export function parseAttendanceLog(line: string): AttendanceLog {
     deviceUserId: parts[0],
     timestamp: new Date(parts[1]),
     status: Number(parts[2]),
-    statusName: statusMap[Number(parts[2])],
+    statusName: statusMap[Number(parts[2])] || "Unknown",
     verifyType: Number(parts[3]),
-    verifyTypeName: verifyTypeMap[Number(parts?.[3])],
+    verifyTypeName: verifyTypeMap[Number(parts?.[3])] || "Unknown",
   };
 }
